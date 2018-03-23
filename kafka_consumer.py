@@ -24,13 +24,12 @@ cdp_receiver = KafkaConsumer('vizgems_in',
 ### consuming Massages
 payload = dict()
 for message in cdp_receiver:
-   ### Formating received data in JSON format   
-   payload = json.loads(message.value.replace("'", "\""))   
-   try:
-      ### Sending the request to VizGems app for Config the Services
-      response = requests.post(vizgems_rest_url, data=payload)
-	  logger.info(payload + ' Response: '+response.json())
-      #print(response.json())
-   except Exception as e:      
-	  logger.error(e.message)
+	### Formating received data in JSON format   
+	payload = json.loads(message.value.replace("'", "\""))   
+	try:
+		### Sending the request to VizGems app for Config the Services
+		response = requests.post(vizgems_rest_url, data=payload)
+		logger.info(payload + ' Response: '+response.json())
 
+	except Exception as e:      
+		logger.error(e.message)
