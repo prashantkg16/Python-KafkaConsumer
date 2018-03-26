@@ -7,8 +7,11 @@ import logging
 ### VizGems REST END point
 vizgems_rest_url = "http://135.25.224.231:8000/cgi-bin/vg_rest.cgi"
 
-### Logging 
-handler = logging.FileHandler('/export/home/swift/log/kafkaconsumer.log')
+### Logging
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+ 
+handler = logging.FileHandler('/export/home/swift/log/kafkaconsumer')
 handler.setLevel(logging.INFO)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 handler.setFormatter(formatter)
